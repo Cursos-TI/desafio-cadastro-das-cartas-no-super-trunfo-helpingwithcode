@@ -85,6 +85,12 @@ int main() {
     float pibPerCapita1 = (atributoPIB1 * 1000000000.0f) / atributoPopulacao1;
     float pibPerCapita2 = (atributoPIB2 * 1000000000.0f) / atributoPopulacao2;
 
+    // Novos valores para desafio mestre
+    float superPoderCarta1 = (float) atributoPopulacao1 + atributoArea1 + atributoPIB1
+                                + (float) atributoPontosTuristicos1 + pibPerCapita1 + (1.0f / densidadePopulacional1);
+
+    float superPoderCarta2 = (float) atributoPopulacao2 + atributoArea2 + atributoPIB2
+                                + (float) atributoPontosTuristicos2 + pibPerCapita2 + (1.0f / densidadePopulacional2);
 
 
     // printar dados da carta 1
@@ -97,7 +103,8 @@ int main() {
     printf("PIB: %2f bilhões de reais\n", atributoPIB1);
     printf("Número de Pontos Turísticos: %d\n", atributoPontosTuristicos1);
     printf("Densidade Populacional: %.2f hab/km²\n", densidadePopulacional1);
-    printf("PIB per Capita: %.2f reais\n\n", pibPerCapita1);
+    printf("PIB per Capita: %.2f reais\n", pibPerCapita1);
+    printf("Super Poder: %.2f\n\n", superPoderCarta1);
 
     // printar dados da carta 2
     printf("Carta 2:\n");
@@ -110,6 +117,26 @@ int main() {
     printf("Número de Pontos Turísticos: %d\n", atributoPontosTuristicos2);
     printf("Densidade Populacional: %.2f hab/km²\n", densidadePopulacional2);
     printf("PIB per Capita: %.2f reais\n", pibPerCapita2);
+    printf("Super Poder: %.2f\n", superPoderCarta2);
+
+    // validando qual carta venceu
+    int vPop = (atributoPopulacao1 > atributoPopulacao2);
+    int vArea = (atributoArea1 > atributoArea2);
+    int vPIB = (atributoPIB1 > atributoPIB2);
+    int vPts = (atributoPontosTuristicos1 > atributoPontosTuristicos2);
+    int vDens = (densidadePopulacional1 < densidadePopulacional2);     // menor densidade vence
+    int vPpc = (pibPerCapita1 > pibPerCapita2);
+    int vSP = (superPoderCarta1 > superPoderCarta2);
+
+    printf("\n\nComparação de Cartas:\n");
+    printf("População: Carta %d venceu (%d)\n", vPop ? 1 : 2, vPop);
+    printf("Área: Carta %d venceu (%d)\n", vArea ? 1 : 2, vArea);
+    printf("PIB: Carta %d venceu (%d)\n", vPIB ? 1 : 2, vPIB);
+    printf("Pontos Turísticos: Carta %d venceu (%d)\n", vPts ? 1 : 2, vPts);
+    printf("Densidade Populacional: Carta %d venceu (%d)\n", vDens ? 1 : 2, vDens);
+    printf("PIB per Capita: Carta %d venceu (%d)\n", vPpc ? 1 : 2, vPpc);
+    printf("Super Poder: Carta %d venceu (%d)\n", vSP ? 1 : 2, vSP);
+
 
     return 0;
 }
